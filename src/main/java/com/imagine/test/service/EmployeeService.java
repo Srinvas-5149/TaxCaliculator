@@ -60,7 +60,7 @@ public class EmployeeService {
 		}
 		if (salary > 1000000) {
 			if (salary > 2500000) {
-				return slabOneCaliculation(250000) + slabTwoCaliculation(250000) + slabThreeCaliculation(salary-750000)
+				return slabOneCaliculation(250000) + slabTwoCaliculation(250000) + slabThreeCaliculation(2500000-750000)
 						+ excessCaliculation(salary-2500000);
 			}
 			return slabOneCaliculation(250000) + slabTwoCaliculation(250000) + slabThreeCaliculation(salary-750000);
