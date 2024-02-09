@@ -30,7 +30,7 @@ public class EmployeeService {
 			EmployeeTaxResponse employeeTaxResponse = new EmployeeTaxResponse();
 			employeeTaxResponse.setId(employee.getId());
 			employeeTaxResponse.setFinancialYear(getFinancialYear(year));
-			employeeTaxResponse.setTax(caliculateSalaryInFinYear(year, employee.getSalary(), employee.getDoj()));
+			employeeTaxResponse.setTax(caliculateTax(caliculateSalaryInFinYear(year, employee.getSalary(), employee.getDoj())));
 			employeeTaxList.add(employeeTaxResponse);
 		}
 		return employeeTaxList;
@@ -56,14 +56,14 @@ public class EmployeeService {
 			return slabOneCaliculation(salary);
 		}
 		if (salary > 500000 && salary <= 1000000) {
-			return slabOneCaliculation(salary) + slabTwoCaliculation(salary);
+			return slabOneCaliculation(250000) + slabTwoCaliculation(salary-500000);
 		}
 		if (salary > 1000000) {
 			if (salary > 2500000) {
-				return slabOneCaliculation(salary) + slabTwoCaliculation(salary) + slabThreeCaliculation(salary)
-						+ excessCaliculation(salary);
+				return slabOneCaliculation(250000) + slabTwoCaliculation(250000) + slabThreeCaliculation(salary-750000)
+						+ excessCaliculation(salary-2500000);
 			}
-			return slabOneCaliculation(salary) + slabTwoCaliculation(salary) + slabThreeCaliculation(salary);
+			return slabOneCaliculation(250000) + slabTwoCaliculation(250000) + slabThreeCaliculation(salary-750000);
 		}
 		return 0.0;
 	}
