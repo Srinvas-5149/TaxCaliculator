@@ -53,35 +53,21 @@ public class EmployeeService {
 
 	public Double caliculateTax(Double salary) {
 		if (salary > 250000 && salary <= 500000.0) {
-			return slabOneCaliculation(salary);
+			return taxBySlab(salary, 5);
 		}
 		if (salary > 500000 && salary <= 1000000) {
-			return slabOneCaliculation(250000) + slabTwoCaliculation(salary-500000);
+			return taxBySlab(salary, 5) + taxBySlab(salary-500000, 10);
 		}
 		if (salary > 1000000) {
 			if (salary > 2500000) {
-				return slabOneCaliculation(250000) + slabTwoCaliculation(250000) + slabThreeCaliculation(2500000-750000)
-						+ excessCaliculation(salary-2500000);
+				return taxBySlab(salary, 5) + taxBySlab(250000.0, 10) + + taxBySlab(2500000.0-750000.0, 20) + taxBySlab(salary-2500000, 2);
 			}
-			return slabOneCaliculation(250000) + slabTwoCaliculation(250000) + slabThreeCaliculation(salary-750000);
+			return taxBySlab(salary, 5) + taxBySlab(250000.0, 10) + + taxBySlab(2500000.0-750000.0, 20);
 		}
 		return 0.0;
 	}
 
-	public Double slabOneCaliculation(Double salary) {
+	public Double taxBySlab(Double salary, int percentage) {
 		return EmployeeUtils.calculateValue(5, salary);
-	}
-
-	public Double slabTwoCaliculation(Double salary) {
-		return EmployeeUtils.calculateValue(10, salary);
-	}
-
-	public Double slabThreeCaliculation(Double salary) {
-		return EmployeeUtils.calculateValue(20, salary);
-	}
-
-	public Double excessCaliculation(Double salary) {
-		Double excessSalary = salary - 2500000;
-		return EmployeeUtils.calculateValue(2, excessSalary);
 	}
 }
