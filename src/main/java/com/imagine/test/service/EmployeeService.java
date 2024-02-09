@@ -68,6 +68,6 @@ public class EmployeeService {
 	}
 
 	public Double taxBySlab(Double salary, int percentage) {
-		return EmployeeUtils.calculateValue(5, salary);
+		return EmployeeUtils.calculateValue(percentage, salary);
 	}
 }
