@@ -56,13 +56,13 @@ public class EmployeeService {
 			return taxBySlab(salary, 5);
 		}
 		if (salary > 500000 && salary <= 1000000) {
-			return taxBySlab(salary, 5) + taxBySlab(salary-500000, 10);
+			return taxBySlab(250000.0, 5) + taxBySlab(salary-500000.0, 10);
 		}
 		if (salary > 1000000) {
 			if (salary > 2500000) {
-				return taxBySlab(salary, 5) + taxBySlab(250000.0, 10) + + taxBySlab(2500000.0-750000.0, 20) + taxBySlab(salary-2500000, 2);
+				return taxBySlab(250000.0, 5) + taxBySlab(250000.0, 10) + + taxBySlab(2500000.0-750000.0, 20) + taxBySlab(salary-2500000, 2);
 			}
-			return taxBySlab(salary, 5) + taxBySlab(250000.0, 10) + + taxBySlab(2500000.0-750000.0, 20);
+			return taxBySlab(250000.0, 5) + taxBySlab(250000.0, 10) + + taxBySlab(2500000.0-750000.0, 20);
 		}
 		return 0.0;
 	}
